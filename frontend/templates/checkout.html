@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finalizar Compra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Comprar {{.ProductName}}</h1>
+    
+    <form action="/order" method="POST">
+        <input type="hidden" name="productName" value="{{.ProductName}}">
+        
+        <label>Tu Nombre (Pingüino):</label>
+        <input type="text" name="customerName" required>
+        
+        <label>Dirección del Iglú:</label>
+        <input type="text" name="address" required>
+        
+        <button type="submit">Confirmar Pedido</button>
+    </form>
+    
+    <br>
+    <a href="/">Volver a la tienda</a>
+</body>
+</html>

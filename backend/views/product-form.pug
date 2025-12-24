@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title #{product._id ? 'Editar' : 'Nuevo'} Producto
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/admin-styles.css")
+  body
+    h1 #{product._id ? 'Editar' : 'Nuevo'} Producto
+    
+    - var actionUrl = product._id ? `/products/${product._id}?_method=PUT` : '/products'
+    
+    form(action=actionUrl, method="POST")
+      label Nombre:
+      input(type="text", name="name", value=product.name, required)
+      
+      label Descripción:
+      textarea(name="description")= product.description
+      
+      label Precio:
+      input(type="number", name="price", value=product.price, required)
+      
+      label Imagen (nombre sin extensión, ej: producto_n1):
+      input(type="text", name="image", value=product.image, placeholder="producto_n1")
+      p.help-text Nota: La imagen debe estar ubicada en frontend/static/images/ con extensión .png
+      
+      button(type="submit") Guardar
+      a(href="/products") Cancelar

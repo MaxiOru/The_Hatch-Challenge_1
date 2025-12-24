@@ -1,0 +1,50 @@
+extends ../layout
+
+block content
+  .page-header
+    h2= product ? 'Editar Producto' : 'Nuevo Producto'
+    a.btn.btn-secondary(href='/products') ← Volver
+  
+  if error
+    .alert.alert-error= error
+  
+  form.product-form(method='POST', action=product ? `/products/${product._id}` : '/products', enctype='multipart/form-data')
+    .form-row
+      .form-group
+        label(for='name') Nombre del Producto *
+        input#name(type='text', name='name', value=product ? product.name : '', required, placeholder='Salmón Fresco Antártico')
+      
+      .form-group
+        label(for='category') Categoría *
+        select#category(name='category', required)
+          option(value='pescado', selected=product && product.category === 'pescado') 🐟 Pescado
+          option(value='accesorios', selected=product && product.category === 'accesorios') 🎀 Accesorios
+          option(value='ropa', selected=product && product.category === 'ropa') 🎩 Ropa
+          option(value='decoracion', selected=product && product.category === 'decoracion') 🏠 Decoración
+          option(value='otros', selected=product && product.category === 'otros') 📦 Otros
+    
+    .form-group
+      label(for='description') Descripción *
+      textarea#description(name='description', rows='4', required, placeholder='Describe el producto...')= product ? product.description : ''
+    
+    .form-row
+      .form-group
+        label(for='price') Precio ($) *
+        input#price(type='number', name='price', value=product ? product.price : '', step='0.01', min='0', required, placeholder='99.99')
+      
+      .form-group
+        label(for='stock') Stock *
+        input#stock(type='number', name='stock', value=product ? product.stock : '', min='0', required, placeholder='100')
+    
+    .form-group
+      label(for='image') Imagen del Producto
+      if product && product.image
+        .current-image
+          img(src=`/uploads/${product.image}`, alt='Imagen actual', style='max-width: 200px; margin-bottom: 10px;')
+          p.hint Imagen actual. Sube una nueva para reemplazarla.
+      input#image(type='file', name='image', accept='image/*')
+      p.hint Formatos: JPG, PNG, GIF, WebP (máx. 5MB)
+    
+    .form-actions
+      button.btn.btn-primary(type='submit')= product ? 'Actualizar Producto' : 'Crear Producto'
+      a.btn.btn-secondary(href='/products') Cancelar

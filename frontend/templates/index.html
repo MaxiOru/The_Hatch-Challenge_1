@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tienda de Larry</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Tienda Online de Larry</h1>
+    <p>¡Pescado fresco directo a tu iglú!</p>
+
+    <div class="products">
+        {{range .}}
+        <div class="product">
+            <div class="product-info">
+                <h2>{{.Name}}</h2>
+                <p>{{.Description}}</p>
+                <p><strong>Precio: ${{printf "%.2f" .Price}}</strong></p>
+                <a href="/checkout?product={{.Name}}">
+                    <button>Comprar ahora</button>
+                </a>
+            </div>
+            {{if .Image}}
+            <div class="product-image">
+                <img src="/static/images/{{.Image}}.png" alt="{{.Name}}">
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+            <p>No hay productos a la venta. Larry está durmiendo.</p>
+        {{end}}
+    </div>
+</body>
+</html>

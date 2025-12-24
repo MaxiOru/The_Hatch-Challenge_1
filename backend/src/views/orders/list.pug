@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+  .page-header
+    h2 📋 Pedidos de Clientes
+  
+  if success
+    .alert.alert-success= success
+  
+  if error
+    .alert.alert-error= error
+  
+  if orders && orders.length > 0
+    .orders-table
+      table
+        thead
+          tr
+            th ID
+            th Cliente
+            th Dirección Iglú
+            th Total
+            th Estado
+            th Fecha
+            th Acciones
+        tbody
+          each order in orders
+            tr
+              td.order-id= order._id.toString().slice(-6)
+              td= order.customerName
+              td= order.iglooAddress
+              td.price $#{order.total.toFixed(2)}
+              td
+                span(class=`status status-${order.status}`)= order.status
+              td= new Date(order.createdAt).toLocaleDateString('es-ES')
+              td.actions
+                form.inline-form(method='POST', action=`/orders/${order._id}/status`)
+                  select.status-select(name='status', onchange='this.form.submit()')
+                    option(value='pendiente', selected=order.status === 'pendiente') Pendiente
+                    option(value='procesando', selected=order.status === 'procesando') Procesando
+                    option(value='entregado', selected=order.status === 'entregado') Entregado
+                    option(value='cancelado', selected=order.status === 'cancelado') Cancelado
+                
+                form.inline-form(method='POST', action=`/orders/${order._id}/delete`, onsubmit="return confirm('¿Eliminar este pedido?')")
+                  button.btn.btn-small.btn-danger(type='submit') 🗑️
+    
+    .orders-summary
+      p Total de pedidos: 
+        strong= orders.length
+      p Ingresos totales: 
+        strong $#{orders.reduce((sum, o) => sum + o.total, 0).toFixed(2)}
+  else
+    .empty-state
+      p 🐧 No hay pedidos todavía
+      p Los pingüinos aún no han comprado nada. ¡Espera a que lleguen!

@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    title Pedidos
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/admin-styles.css")
+  body
+    nav
+      a(href="/products") Productos
+      |  | 
+      a(href="/orders") Pedidos
+      |  | 
+      a(href="/auth/logout") Salir
+
+    h1 Pedidos de Pingüinos
+    if orders.length == 0
+      p No hay pedidos aún. Larry está triste.
+    else
+      table
+        thead
+          tr
+            th Fecha
+            th Cliente
+            th Dirección
+            th Producto
+            th Estado
+        tbody
+          each order in orders
+            tr
+              td= order.date.toLocaleDateString()
+              td= order.customerName
+              td= order.address
+              td= order.productName
+              td= order.status
