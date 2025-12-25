@@ -4,7 +4,8 @@ html
     title #{product._id ? 'Editar' : 'Nuevo'} Producto
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="/css/admin-styles.css")
+    //- link(rel="stylesheet", href="/css/admin-styles.css")
+    link(rel="stylesheet", href="/css/product-form.css")
   body
     h1 #{product._id ? 'Editar' : 'Nuevo'} Producto
     
@@ -20,9 +21,9 @@ html
       label Precio:
       input(type="number", name="price", value=product.price, required)
       
-      label Imagen (nombre sin extensión, ej: producto_n1):
-      input(type="text", name="image", value=product.image, placeholder="producto_n1")
-      p.help-text Nota: La imagen debe estar ubicada en frontend/static/images/ con extensión .png
+      label Imagen (solo el nombre, sin extensión):
+      input(type="text", name="image", value=product.image ? product.image.replace('.png', '') : '', placeholder="producto_n1")
+      p.help-text Se agregará automáticamente .png. La imagen debe existir en backend/uploads/ y frontend/static/images/
       
       button(type="submit") Guardar
       a(href="/products") Cancelar

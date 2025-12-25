@@ -3,33 +3,40 @@ html
   head
     title Panel de Control
     meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="/css/admin-styles.css")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    //- link(rel="stylesheet" href="/css/admin-styles.css")
+    link(rel="stylesheet" href="/css/products.css")
   body
-    nav
-      a(href="/products") Productos
-      |  | 
-      a(href="/orders") Pedidos
-      |  | 
-      a(href="/auth/logout") Salir
-    
-    h1 Gestión de Productos
-    a(href="/products/new") + Nuevo Producto
+    header
+      nav
+        a(href="/products") Productos
+        a(href="/orders") Pedidos
+        a(href="/auth/logout") Salir
 
-    table
-      thead
-        tr
-          th Nombre
-          th Imagen
-          th Precio
-          th Acciones
-      tbody
-        each product in products
+    main
+      h1 Gestión de Productos
+      a(href="/products/new") + Nuevo Producto
+
+      table
+        thead
           tr
-            td= product.name
-            td= product.image || 'Sin imagen'
-            td $#{product.price}
-            td
-              a(href=`/products/edit/${product._id}`) Editar
-              form(action=`/products/${product._id}?_method=DELETE`, method="POST")
-                button(type="submit") Borrar
+            th Nombre
+            th Imagen
+            th Precio
+            th Acciones
+        tbody
+          each product in products
+            tr
+              td= product.name
+              td
+                if product.image
+                  img(src=`/uploads/${product.image}`, alt=product.name, style="max-width: 100px; height: auto;")
+                else
+                  | Sin imagen
+              td $#{product.price}
+              td
+                .acciones
+                  a.btn-editar(href=`/products/edit/${product._id}`) Editar
+                  form(action=`/products/${product._id}?_method=DELETE`, method="POST")
+                    button.btn-borrar(type="submit") Borrar
+

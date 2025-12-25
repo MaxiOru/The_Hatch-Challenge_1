@@ -1,0 +1,173 @@
+/* ==============================
+   RESET Y CONFIGURACIÓN BASE
+   ============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; /* Escalado correcto */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e7e7e7;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+/* ==============================
+   CONTENEDOR PRINCIPAL
+   ============================== */
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+}
+
+/* ==============================
+   HEADER Y NAV
+   ============================== */
+
+header {
+    background-color: rgb(41, 10, 180);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+nav a {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+   CONTENIDO PRINCIPAL
+   ============================== */
+
+main {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* ==============================
+   BOTÓN NUEVO PRODUCTO
+   ============================== */
+
+a[href*="new"] {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+a[href*="new"]:hover {
+    background-color: #218838;
+}
+
+/* ==============================
+   TABLA (DESKTOP)
+   ============================== */
+
+.table-wrapper {
+    overflow-x: auto; /* CLAVE PARA MOBILE */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #007bff;
+    background-color: white;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+td {
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+}
+
+/* ==============================
+   IMÁGENES
+   ============================== */
+
+
+td img {
+    max-width: 90px;
+    height: auto;
+    display: block; 
+    margin: 0px auto;
+}
+
+/* ==============================
+   ACCIONES Y BOTONES
+   ============================== */
+
+.acciones {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-editar,
+.btn-borrar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    min-width: 70px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+
+.btn-editar {
+    background-color: #13a000;
+}
+
+.btn-editar:hover {
+    background-color: #018a13;
+}
+
+.btn-borrar {
+    background-color: #dc3545;
+}
+
+.btn-borrar:hover {
+    background-color: #c82333;
+}

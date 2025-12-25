@@ -4,14 +4,16 @@ html
     title Panel de Paula
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="/css/admin-styles.css")
+    //- link(rel="stylesheet", href="/css/admin-styles.css")
+    link(rel="stylesheet", href="/css/login.css")
   body
     h1 Login de Paula
-    if error
-      p.error-message= error
+
     form(action="/auth/login", method="POST")
       label Usuario:
       input(type="text", name="username", required)
       label Contraseña:
       input(type="password", name="password", required)
       button(type="submit") Entrar
+      if error
+        p.error-message= error

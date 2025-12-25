@@ -1,0 +1,99 @@
+/* Estilos para la página de pedidos */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #e7e7e7;
+    font-size: 17.6px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 10px auto;
+}
+
+header {
+    background-color: rgb(41, 10, 180);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+main {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+nav a {
+    margin-right: 15px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+p {
+    color: #666;
+}
+
+table {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #007bff;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Selector de estado */
+td form {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+td form select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+td form select:hover {
+    border-color: #007bff;
+}
+
+td form select:focus {
+    outline: none;
+    border-color: #007bff;
+}

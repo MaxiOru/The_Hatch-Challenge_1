@@ -10,6 +10,11 @@ function orderController() {
         res.render('orders', { orders });
     });
 
+    router.put('/:id/status', auth, async (req, res) => {
+        await Order.findByIdAndUpdate(req.params.id, { status: req.body.status });
+        res.redirect('/orders');
+    });
+
     return router;
 }
 

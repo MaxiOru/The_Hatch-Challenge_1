@@ -17,6 +17,10 @@ function productController() {
     });
 
     router.post('/', async (req, res) => {
+        // Agregar .png automáticamente si el usuario escribió algo en image
+        if (req.body.image && req.body.image.trim() !== '') {
+            req.body.image = req.body.image + '.png';
+        }
         await Product.create(req.body);
         res.redirect('/products');
     });
@@ -27,6 +31,10 @@ function productController() {
     });
 
     router.put('/:id', async (req, res) => {
+        // Agregar .png automáticamente si el usuario escribió algo en image
+        if (req.body.image && req.body.image.trim() !== '') {
+            req.body.image = req.body.image + '.png';
+        }
         await Product.findByIdAndUpdate(req.params.id, req.body);
         res.redirect('/products');
     });

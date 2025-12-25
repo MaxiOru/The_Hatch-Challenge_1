@@ -4,32 +4,40 @@ html
     title Pedidos
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="/css/admin-styles.css")
+    //- link(rel="stylesheet", href="/css/admin-styles.css")
+    link(rel="stylesheet", href="/css/orders.css")
   body
-    nav
-      a(href="/products") Productos
-      |  | 
-      a(href="/orders") Pedidos
-      |  | 
-      a(href="/auth/logout") Salir
+    header
+      nav
+        a(href="/products") Productos
+        a(href="/orders") Pedidos
+        a(href="/auth/logout") Salir
 
-    h1 Pedidos de Pingüinos
-    if orders.length == 0
-      p No hay pedidos aún. Larry está triste.
-    else
-      table
-        thead
-          tr
-            th Fecha
-            th Cliente
-            th Dirección
-            th Producto
-            th Estado
-        tbody
-          each order in orders
+    main
+      h1 Pedidos de Pingüinos
+      if orders.length == 0
+        p No hay pedidos aún. Larry está triste.
+      else
+        table
+          thead
             tr
-              td= order.date.toLocaleDateString()
-              td= order.customerName
-              td= order.address
-              td= order.productName
-              td= order.status
+              th Fecha
+              th Cliente
+              th Dirección
+              th Producto
+              th Estado
+              th Acciones
+          tbody
+            each order in orders
+              tr
+                td= order.date.toLocaleDateString()
+                td= order.customerName
+                td= order.address
+                td= order.productName
+                td= order.status
+                td
+                  form(method="POST", action=`/orders/${order._id}/status?_method=PUT`)
+                    select(name="status", onchange="this.form.submit()")
+                      option(value="Pendiente", selected=order.status === 'Pendiente') Pendiente
+                      option(value="Entregado", selected=order.status === 'Entregado') Entregado
+                      option(value="Cancelado", selected=order.status === 'Cancelado') Cancelado
