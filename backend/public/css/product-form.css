@@ -9,12 +9,28 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
+header {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
     color: #333;
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 form {
@@ -22,6 +38,8 @@ form {
     padding: 30px;
     border-radius: 8px;
     max-width: 600px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 label {
@@ -45,6 +63,14 @@ textarea {
 textarea {
     min-height: 100px;
     resize: vertical;
+}
+
+.help-text {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-style: italic;
 }
 
 button {

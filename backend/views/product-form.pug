@@ -7,23 +7,25 @@ html
     //- link(rel="stylesheet", href="/css/admin-styles.css")
     link(rel="stylesheet", href="/css/product-form.css")
   body
-    h1 #{product._id ? 'Editar' : 'Nuevo'} Producto
+    header 
+      h1 #{product._id ? 'Editar' : 'Nuevo'} Producto
     
-    - var actionUrl = product._id ? `/products/${product._id}?_method=PUT` : '/products'
-    
-    form(action=actionUrl, method="POST")
-      label Nombre:
-      input(type="text", name="name", value=product.name, required)
+    main 
+      - var actionUrl = product._id ? `/products/${product._id}?_method=PUT` : '/products'
       
-      label Descripción:
-      textarea(name="description")= product.description
-      
-      label Precio:
-      input(type="number", name="price", value=product.price, required)
-      
-      label Imagen (solo el nombre, sin extensión):
-      input(type="text", name="image", value=product.image ? product.image.replace('.png', '') : '', placeholder="producto_n1")
-      p.help-text Se agregará automáticamente .png. La imagen debe existir en backend/uploads/ y frontend/static/images/
-      
-      button(type="submit") Guardar
-      a(href="/products") Cancelar
+      form(action=actionUrl, method="POST")
+        label Nombre:
+        input(type="text", name="name", value=product.name, required)
+        
+        label Descripción:
+        textarea(name="description")= product.description
+        
+        label Precio:
+        input(type="number", name="price", value=product.price, required)
+        
+        label Imagen (solo el nombre, sin extensión, pero asegurate que la imagen sea de extension .png ):
+        input(type="text", name="image", value=product.image ? product.image.replace('.png', '') : '', placeholder="producto_n1")
+        p.help-text La imagen debe existir en backend/uploads/ y frontend/static/images/
+        
+        button(type="submit") Guardar
+        a(href="/products") Cancelar

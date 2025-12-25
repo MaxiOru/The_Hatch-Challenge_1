@@ -4,12 +4,15 @@
     <title>Finalizar Compra</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/checkout.css">
 </head>
 <body>
-    <h1>Comprar {{.ProductName}}</h1>
+    <header>
+        <h1>Comprar {{.ProductName}}</h1>
+    </header>
     
-    <form action="/order" method="POST">
+    <main>
+        <form action="/order" method="POST">
         <input type="hidden" name="productName" value="{{.ProductName}}">
         
         <label>Tu Nombre (Pingüino):</label>
@@ -20,8 +23,9 @@
         
         <button type="submit">Confirmar Pedido</button>
     </form>
-    
-    <br>
-    <a href="/">Volver a la tienda</a>
+        
+        <br>
+        <a href="/">Volver a la tienda</a>
+    </main>
 </body>
 </html>
