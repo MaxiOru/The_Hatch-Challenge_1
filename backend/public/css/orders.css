@@ -7,7 +7,7 @@
 }
 
 html {
-    background-color: #e7e7e7;
+    background: #e7e7e7;
     font-size: 17.6px;
 }
 
@@ -18,32 +18,27 @@ body {
 }
 
 header {
-    background-color: rgb(41, 10, 180);
+    background: #291ab4;
     padding: 15px;
-    margin-bottom: 20px;
     border-radius: 8px;
+    color: #fff;
 }
 
 main {
-    background-color: #ffffff;
-    padding: 20px;
+    background: #fff;
+    padding: 16px;
     border-radius: 8px;
 }
 
 nav a {
-    margin-right: 15px;
-    font-size: 1.2rem;
-    color: #ffffff;
+    margin-right: 12px;
+    color: #fff;
     text-decoration: none;
-}
-
-nav a:hover {
-    text-decoration: underline;
 }
 
 h1 {
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-size: 2rem;
 }
 
@@ -53,47 +48,33 @@ p {
 
 table {
     width: 100%;
-    background-color: white;
+    background: #fff;
     border: 2px solid #007bff;
     border-collapse: collapse;
 }
 
 th {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
     text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid #fff;
 }
 
 td {
-    padding: 12px 15px;
+    padding: 8px 10px;
     border: 1px solid #ddd;
 }
 
-/* Selector de estado */
 td form {
-    display: block;
     width: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 td form select {
     width: 100%;
-    padding: 8px 12px;
+    padding: 6px 10px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    background-color: white;
-    cursor: pointer;
-}
-
-td form select:hover {
-    border-color: #007bff;
-}
-
-td form select:focus {
-    outline: none;
-    border-color: #007bff;
+    background: #fff;
 }
