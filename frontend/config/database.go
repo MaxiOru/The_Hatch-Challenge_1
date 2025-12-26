@@ -1,36 +1,32 @@
+// Paquete para la configuración y conexión a la base de datos
 package config
 
 import (
 	"context"
 	"log"
-	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Variable global para acceder a la base de datos desde otros archivos
 var DB *mongo.Database
 
 func ConnectDB() {
+	// Crear un contexto con timeout para la conexión a MongoDB
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	defer cancel() // Liberar recursos del contexto al finalizar
 
-	mongoURI := os.Getenv("MONGODB_URI")
-	if mongoURI == "" {
-		mongoURI = "mongodb://127.0.0.1:27017"
-	}
-
+	// URI de conexión a MongoDB (local, hardcodeada)
+	mongoURI := "mongodb://127.0.0.1:27017"
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err) // Si falla la conexión, termina el programa
 	}
 
-	dbName := os.Getenv("DB_NAME")
-	if dbName == "" {
-		dbName = "larry_shop"
-	}
-
+	// Seleccionar la base de datos (nombre hardcodeado)
+	dbName := "larry_shop"
 	DB = client.Database(dbName)
-	log.Println("Conectado a MongoDB (Frontend Go)")
+	log.Println("Conectado a MongoDB (Frontend Go)") // Mensaje de éxito
 }

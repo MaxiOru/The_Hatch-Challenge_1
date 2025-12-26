@@ -3,35 +3,27 @@ package main
 import (
 	"log"
 	"net/http"
-	"os"
 
 	"larry-store/config"
 	"larry-store/controllers"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	// Cargar variables de entorno
-	if err := godotenv.Load(); err != nil {
-		log.Println("No se encontró archivo .env, usando valores por defecto")
-	}
-
+	// Conectar a la base de datos
 	config.ConnectDB()
 
 	// Servir archivos estáticos (imágenes)
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	http.HandleFunc("/", controllers.IndexHandler)
-	http.HandleFunc("/checkout", controllers.CheckoutHandler)
-	http.HandleFunc("/order", controllers.OrderHandler)
+	// Rutas principales de la tienda
+	http.HandleFunc("/", controllers.IndexHandler)            // Página principal (lista de productos)
+	http.HandleFunc("/checkout", controllers.CheckoutHandler) // Página de compra de producto
+	http.HandleFunc("/order", controllers.OrderHandler)       // Procesa el pedido
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
+	port := "8080" // Puerto
 
+	// Iniciar el servidor web en el puerto especificado
 	log.Printf("Tienda corriendo en http://localhost:%s", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
